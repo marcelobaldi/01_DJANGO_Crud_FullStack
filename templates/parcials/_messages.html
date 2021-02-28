@@ -1,0 +1,18 @@
+{% load static %}
+
+{% if keyMsgError %}
+  <div class="alert alert-warning" style="position:absolute; margin-left: 350px; margin-top:40px">
+    {{ keyMsgError }}
+  </div>
+{% endif %}
+
+
+{% if messages %}
+  {% for msg in messages %}
+    <div class="alert {{ msg.tags }}" style="position:absolute; margin-left: 350px; margin-top:40px">
+      {{ msg }}
+    </div>
+  {% endfor %}
+{% endif %}
+
+

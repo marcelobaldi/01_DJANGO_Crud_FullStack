@@ -1,0 +1,19 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        {% include 'parcials/_head.html' %}
+    </head>
+
+    <body>
+        {% include 'parcials/_nav.html' %}
+
+        {% block content %} {% endblock %}
+
+        {% include 'parcials/_finalBody.html' %}
+        {% include 'parcials/_jquery.html' %}
+    </body>
+</html>
+
+

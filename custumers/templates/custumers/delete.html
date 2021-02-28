@@ -1,0 +1,31 @@
+{% extends 'templateSite.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container fixed-top" style="background-color: white; margin-top: 100px">
+
+    <h3> Deletar </h3>
+
+    {{ keyCustumer.id }} - {{ keyCustumer.name }} - {{ keyCustumer.email }} <br/><br/>
+
+    <form method="POST" action="{% url 'Delete' %}">
+      {% csrf_token %}
+      <input type="text" name="action" value="1" hidden>
+      <input type="text" name="id"  value="{{ keyCustumer.id }}" hidden>
+      <button type="submit" class="btn btn-danger">Sim</button>
+    </form> <br/>
+
+    <form method="POST" action="{% url 'Delete' %}">
+      {% csrf_token %}
+      <input type="text" name="action" value="2" hidden>
+      <input type="text" name="id" value="{{ keyCustumer.id }}" hidden>
+      <button type="submit" class="btn btn-primary" style="margin-top:-115px; margin-left:80px">
+        Cancelar</button>
+    </form>
+
+  </div>
+
+{% endblock %}
+
+

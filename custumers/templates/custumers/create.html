@@ -1,0 +1,41 @@
+{% extends 'templateSite.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container" style="margin-top: 100px">
+    <h3> Cadastro </h3> <br/>
+
+    <div class="container" style="width:100%; margin-top:-105px; margin-left:-20px; position:absolute">
+      {% include 'parcials/_messages.html' %}
+    </div>
+
+    <form method="POST" action="{% url 'Save' %}">
+      {% csrf_token %}
+
+      <label for="name" style="font-size:12px; font-weight:bold; margin-bottom:-10px;
+              margin-top:5px;">Nome</label>
+      <input type="text" id="name"  name="name"  value="{{ request.POST.name }}"
+              class="form-control" placeholder="Nome:">
+
+      <label for="age" style="font-size:12px; font-weight:bold; margin-bottom:-10px;
+              margin-top:10px;">Idade</label>
+      <input type="number" id="age" name="age" value="{{ request.POST.age }}"
+              class="form-control" placeholder="Idade:">
+
+      <label for="email" style="font-size:12px; font-weight:bold; margin-bottom:-10px;
+              margin-top:10px;">Email</label>
+      <input type="email" id="email" name="email" value="{{ request.POST.email }}"
+              class="form-control" placeholder="Email:">
+
+      <label for="passw" style="font-size:12px; font-weight:bold; margin-bottom:-10px;
+              margin-top:10px;">Senha</label>
+      <input type="password" id="passw" name="passw"
+              class="form-control"  placeholder="Senha:"> <br/>
+
+      <button type="submit" class="btn btn-primary" onclick="return catchForm()">Cadastrar</button>
+    </form>
+
+  </div>
+
+{% endblock %}

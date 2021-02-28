@@ -1,0 +1,142 @@
+{% extends 'templateSite.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container fixed-top" style="background-color:white; margin-top:100px">
+
+    <h3> Busca </h3>
+    <div style="margin-top:20px; margin-left:460px; position:absolute"><b>Inicial</b></div>
+    <div style="margin-top:20px; margin-left:545px; position:absolute"><b>Final</b></div>
+    <div style="margin-top:-80px; margin-left:600px; position:absolute">Qt Tot Encont:</div>
+    <div style="margin-top:-55px; margin-left:600px; position:absolute">Qt Tot Regist:</div>
+
+    <div style="width:100%; margin-top:-80px; margin-left:710px; position:absolute">
+      {{ KeyCustumerFinded }}
+    </div>
+    <div style="width:100%; margin-top:-55px; margin-left:710px; position:absolute">
+      {{ keyCustumerTotal }}
+    </div>
+
+    <div style="width:100%; margin-top:-105px; margin-left:-20px; position:absolute">
+      {% include 'parcials/_messages.html' %}
+    </div>
+
+    <form method="POST" action="{% url 'Read' %}"> {% csrf_token %}
+      <div class="container"> <div class="row">
+        <input  type="text"   name="codForm"  value="1" hidden>
+        <input  type="number" name="id"  class="form-control" style="width:80px" placeholder="Id:">
+        <button type="submit" class="btn btn-primary" style="margin-left: 10px">Buscar</button>
+      </div> </div>
+    </form> <br/>
+
+    <form method="POST" action="{% url 'Read' %}"> {% csrf_token %}
+      <div class="container"  style="margin-top:-15px"> <div class="row">
+        <input  type="text" name="codForm"  value="2"  hidden>
+        <input  type="text" name="name" class="form-control" style="width:250px;" placeholder="Nome:">
+        <button type="submit" class="btn btn-primary" style="margin-left: 10px">Buscar</button>
+      </div> </div>
+    </form> <br/>
+
+    <form method="POST" action="{% url 'Read' %}"> {% csrf_token %}
+      <div class="container"  style="margin-top:-62px"> <div class="row">
+        <input  type="text"   name="codForm"  value="3"  hidden>
+        <input  type="number" name="age1" class="form-control" style="width:70px; margin-left:450px">
+        <input  type="number" name="age2" class="form-control" style="width:70px; margin-left:10px">
+        <button type="submit" class="btn btn-warning" style="margin-left:10px">Buscar Idade</button>
+      </div> </div>
+    </form> <br/>
+
+    <table class="table  table-sm table-hover">
+      <thead>
+        <tr>
+          <th> <div style="width:50px">Id   </div> </th>
+          <th> <div style="width:70px">Idade </div> </th>
+          <th> <div style="width:350px">Nome </div> </th>
+          <th> <div style="width:350px; margin-right:300px">Email</div> </th>
+        </tr>
+      </thead>
+    </table>
+
+  </div>
+
+  <!-- ############################################################################################ -->
+
+  <div class="container" style="margin-top: 300px">
+    <table class="table table-sm table-hover">
+      <tbody>
+
+        {% if keyCustumerAll %}
+          {% for reg in keyCustumerAll %}
+            <tr>
+              <td nowrap=true> <div style="width:50px; overflow:hidden;">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.id }}     </a> </div> </td>
+
+              <td nowrap=true> <div style="width:70px; overflow:hidden;">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.age }}    </a> </div> </td>
+
+              <td nowrap=true> <div style="width:350px; overflow:hidden;">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.name }}   </a> </div> </td>
+
+              <td nowrap=true> <div style="width:350px; overflow:hidden; margin-right:300px">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.email }}  </a> </div> </td>
+            </tr>
+          {% endfor %}
+
+        {% elif keyCustumerId  %}
+          {% for reg in keyCustumerId %}
+            <tr>
+              <td nowrap=true> <div style="width:50px; overflow:hidden;">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.id }}     </a> </div> </td>
+
+              <td nowrap=true> <div style="width:70px; overflow:hidden;">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.age }}  </a> </div> </td>
+
+              <td nowrap=true> <div style="width:350px; overflow:hidden;">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.name }}   </a> </div> </td>
+
+              <td nowrap=true> <div style="width:350px; overflow:hidden; margin-right:300px">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.email }} </a> </div> </td>
+            </tr>
+          {% endfor %}
+
+        {% elif keyCustumerName %}
+          {% for reg in keyCustumerName %}
+            <tr>
+             <td nowrap=true> <div style="width:50px; overflow:hidden;">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.id }}     </a> </div> </td>
+
+              <td nowrap=true> <div style="width:70px; overflow:hidden;">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.age }}  </a> </div> </td>
+
+              <td nowrap=true> <div style="width:350px; overflow:hidden;">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.name }}   </a> </div> </td>
+
+              <td nowrap=true> <div style="width:350px; overflow:hidden; margin-right:300px">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.email }}  </a> </div> </td>
+            </tr>
+          {% endfor %}
+
+        {% elif keyCustumerAge %}
+          {% for reg in keyCustumerAge %}
+            <tr>
+             <td nowrap=true> <div style="width:50px; overflow:hidden;">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.id }}     </a> </div> </td>
+
+              <td nowrap=true> <div style="width:70px; overflow:hidden;">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.age }}  </a> </div> </td>
+
+              <td nowrap=true> <div style="width:350px; overflow:hidden;">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.name }}   </a> </div> </td>
+
+              <td nowrap=true> <div style="width:350px; overflow:hidden; margin-right:300px">
+                <a href="{% url 'SendUpdate' reg.id  %}"> {{ reg.email }}  </a> </div> </td>
+            </tr>
+          {% endfor %}
+        {% endif %}
+
+      </tbody>
+    </table>
+  </div>
+
+{% endblock %}
